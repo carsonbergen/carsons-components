@@ -1,0 +1,4 @@
+# Requirements
+- Tailwindcss
+- React
+- NextJS
