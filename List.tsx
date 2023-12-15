@@ -2,9 +2,16 @@ import Link from "next/link";
 import { randInt } from "three/src/math/MathUtils";
 import { LinkType } from "./types";
 import { AnimatedLink } from "./Text";
+import { MouseEventHandler } from "react";
 
 // List of links
-export function LinkList(props: { items: LinkType[], openInNewTab?: boolean }) {
+export function LinkList(
+    props: { 
+        items: LinkType[], 
+        openInNewTab?: boolean, 
+        onMouseEnter: MouseEventHandler<HTMLAnchorElement>,
+        onMouseLeave: MouseEventHandler<HTMLAnchorElement>,
+}) {
     const hash = (str: string): number => {
         let code = 0;
         if (str.length === 0) {
@@ -20,7 +27,7 @@ export function LinkList(props: { items: LinkType[], openInNewTab?: boolean }) {
 
     return (
         <>
-            <ul className="flex flex-row self-start font-eb-garamond pt-2">
+            <ul className="flex flex-row self-start font-eb-garamond pt-2 flex-wrap">
                 {
                     props.items.map((link: LinkType) => (
                         <li
@@ -29,8 +36,11 @@ export function LinkList(props: { items: LinkType[], openInNewTab?: boolean }) {
                         >
                             <Link
                                 href={link.link}
-                                target={`${props.openInNewTab ? "_blank" : null}`}
-                                rel={`${props.openInNewTab ? "noopener noreferrer" : null}`}
+                                target={`${props.openInNewTab ? "_blank" : ''}`}
+                                rel={`${props.openInNewTab ? "noopener noreferrer" : ''}`}
+                                onMouseEnter={props.onMouseEnter}
+                                onMouseLeave={props.onMouseLeave}
+                                className="lg:text-base text-xl"
                             >
                                 {/* {link.name} */}
                                 <AnimatedLink>
