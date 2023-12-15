@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { randInt } from "three/src/math/MathUtils";
 import { LinkType } from "./types";
+import { AnimatedLink } from "./Text";
 
 // List of links
 export function LinkList(props: { items: LinkType[], openInNewTab?: boolean }) {
@@ -12,15 +13,14 @@ export function LinkList(props: { items: LinkType[], openInNewTab?: boolean }) {
         for (let i = 0; i < str.length; i++) {
             const char = str.charCodeAt(i);
             code = code + char + randInt(0, str.length);
-            // Convert to 32-bit integer
             code |= 0;
         }
         return Math.abs(code);
     }
-    
+
     return (
         <>
-            <ul className="flex flex-row font-eb-garamond">
+            <ul className="flex flex-row self-start font-eb-garamond pt-2">
                 {
                     props.items.map((link: LinkType) => (
                         <li
@@ -31,9 +31,11 @@ export function LinkList(props: { items: LinkType[], openInNewTab?: boolean }) {
                                 href={link.link}
                                 target={`${props.openInNewTab ? "_blank" : null}`}
                                 rel={`${props.openInNewTab ? "noopener noreferrer" : null}`}
-                                className="text-primary pr-2"
                             >
-                                {link.name}
+                                {/* {link.name} */}
+                                <AnimatedLink>
+                                    {link.name}
+                                </AnimatedLink>
                             </Link>
                         </li>
                     ))
