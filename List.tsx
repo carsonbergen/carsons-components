@@ -3,7 +3,7 @@ import { randInt } from "three/src/math/MathUtils";
 import { LinkType } from "./types";
 
 // List of links
-export function LinkList(props: { items: LinkType[] }) {
+export function LinkList(props: { items: LinkType[], openInNewTab?: boolean }) {
     const hash = (str: string): number => {
         let code = 0;
         if (str.length === 0) {
@@ -29,8 +29,8 @@ export function LinkList(props: { items: LinkType[] }) {
                         >
                             <Link
                                 href={link.link}
-                                // target="_blank"
-                                // rel="noopener noreferrer"
+                                target={`${props.openInNewTab ? "_blank" : null}`}
+                                rel={`${props.openInNewTab ? "noopener noreferrer" : null}`}
                                 className="text-primary pr-2"
                             >
                                 {link.name}
