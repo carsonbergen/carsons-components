@@ -1,8 +1,5 @@
 'use client';
-import useMediaQuery from '@/lib/mediaQuery';
 import React, { useState, useEffect } from 'react';
-import { HiQuestionMarkCircle } from 'react-icons/hi2';
-import { PiSmileyBold, PiSmileyXEyesBold } from 'react-icons/pi';
 
 function approx(value1: number, value2: number, threshold: number): boolean {
   const difference = Math.abs(value1 - value2);
@@ -39,7 +36,7 @@ export default function Cursor(props: { display: boolean, itemHovered: string | 
 
   const updatePosition = () => {
     if (mouseOffScreen) {
-      setTargetPosition({ x: window.innerWidth / 2, y: window.innerHeight / 1.25 })
+      setTargetPosition({ x: window.innerWidth / 2, y: window.innerHeight / 1.4 })
     }
 
     const dx = targetPosition.x - position.x;
@@ -64,26 +61,21 @@ export default function Cursor(props: { display: boolean, itemHovered: string | 
   return (
     <>
       <div
-        className={`fixed z-[9999] ease-in-out transition-opacity duration-300 pointer-events-none mix-blend-exclusion`} // ${caughtMouse ? `opacity-25` : `opacity-100`}
+        className={`fixed z-[9999] ease-in-out transition-opacity duration-300 pointer-events-none mix-blend-exclusion`}
         style={{
-          left: `${position.x - 20}px`,
-          top: `${position.y - 20}px`
+          left: `${position.x - 24}px`,
+          top: `${position.y - 24}px`
         }}
       >
         <div className={`
           w-12 h-12 flex justify-center 
           font-eb-garamond items-center 
-          border-primary bg-primary text-secondary 
-          border-2 rounded-full mix-blend-exclusion
-
-        `}>
-          {/* {props.itemHovered} */}
-        </div>
+          border-2 bg-primary
+          rounded-full mix-blend-difference
+        `}/>
       </div>
     </>
 
   );
 };
 
-// ${ !props.itemHovered || !props.display ? 'text-opacity-0' : 'text-opacity-100'}
-// transition-all duration-500

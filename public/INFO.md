@@ -1,0 +1,1 @@
+These elements are to be placed somewhere in your project's public directory.
