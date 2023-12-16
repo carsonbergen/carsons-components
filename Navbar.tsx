@@ -37,21 +37,18 @@ export default function Navbar() {
                         <Dropdown
                             title={`${locale}`}
                         >
-                            {
-                                locales.map(locale => (
-                                    <>
-                                        <button
-                                            onClick={() => {
-                                                setLocale(locale.name);
-                                                localStorage.setItem('locale', locale.name);
-                                                // router.refresh();
-                                            }}
-                                            key={hash(locale.name)}
-                                        >
-                                            {locale.name}
-                                        </button>
-                                    </>
-                                ))
+                            {locales.map(locale => (
+                                <button
+                                    onClick={() => {
+                                        setLocale(locale.name);
+                                        localStorage.setItem('locale', locale.name);
+                                        // router.refresh();
+                                    }}
+                                    key={hash(locale.name)}
+                                >
+                                    {locale.name}
+                                </button>
+                            ))
                             }
                         </Dropdown>
                     </div>
