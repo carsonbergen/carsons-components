@@ -16,7 +16,7 @@ export default function Cursor(props: { display: boolean, itemHovered: string | 
   const handleMouseMove = (e: MouseEvent) => {
     const xPos = e.clientX;
     const yPos = e.clientY;
-    const margin = 25;
+    const margin = 0;
 
     if (xPos - margin < 0 || xPos > window.innerWidth - margin || yPos - margin < 0 || yPos > window.innerHeight - margin) {
       setMouseOffScreen(true);
@@ -36,7 +36,7 @@ export default function Cursor(props: { display: boolean, itemHovered: string | 
 
   const updatePosition = () => {
     if (mouseOffScreen) {
-      setTargetPosition({ x: window.innerWidth / 2, y: window.innerHeight / 1.4 })
+      setTargetPosition({ x: targetPosition.x, y: targetPosition.y })
     }
 
     const dx = targetPosition.x - position.x;
