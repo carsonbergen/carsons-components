@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
 // Context
 
@@ -9,6 +9,7 @@ interface LanguageData {
     setLocale: (newLocale: string) => void;
     translations: Record<string, string>;
     loadTranslations: (locale: string) => void;
+    loading: boolean;
 }
 
 const LanguageContext = createContext<LanguageData | undefined>(undefined);
@@ -31,10 +32,11 @@ interface LanguageProviderProps {
 
 const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
     const storedLocale = typeof window !== 'undefined' ? localStorage.getItem('locale') : null;
-    const initialLocale = storedLocale || "en";
+    const initialLocale = storedLocale || 'en';
 
     const [locale, setLocale] = useState<string>(initialLocale);
     const [translations, setTranslations] = useState<Record<string, string>>({});
+    const [loading, setLoading] = useState<boolean>(true);
 
     const loadTranslations = async (newLocale: string) => {
         try {
@@ -43,16 +45,27 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
 
             setTranslations(data);
             setLocale(newLocale);
+
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('locale', newLocale);
+            }
         } catch (error) {
             console.error(`Error loading translation for the local "${newLocale}.json"`);
+        } finally {
+            setLoading(false);
         }
     };
+
+    useEffect(() => {
+        loadTranslations(locale);
+    }, [locale]);
 
     const languageData: LanguageData = {
         locale,
         setLocale,
         translations,
-        loadTranslations
+        loadTranslations,
+        loading
     };
 
     return <LanguageContext.Provider value={languageData}>{children}</LanguageContext.Provider>
