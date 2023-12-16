@@ -1,10 +1,10 @@
 'use client';
 
 import { useLanguage } from "@/components/carsons-components/LanguageProvider";
-import { useSpring, animated } from "@react-spring/web";
 import { useEffect, useState } from "react";
 import Dropdown from "../Dropdown";
 import { hash } from "./hash";
+import { useRouter } from "next/navigation";
 
 const locales = [
     {
@@ -20,6 +20,8 @@ const locales = [
 
 export default function Navbar() {
     const [mounted, setMounted] = useState<boolean>(false);
+
+    const router = useRouter();
 
     const { locale, setLocale } = useLanguage();
 
@@ -42,6 +44,7 @@ export default function Navbar() {
                                             onClick={() => {
                                                 setLocale(locale.name);
                                                 localStorage.setItem('locale', locale.name);
+                                                // router.refresh();
                                             }}
                                             key={hash(locale.name)}
                                         >

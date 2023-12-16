@@ -15,7 +15,7 @@ export function LinkList(
 }) {
     return (
         <>
-            <ul className="flex flex-row self-start font-eb-garamond pt-2 flex-wrap">
+            <ul className="flex flex-row self-start font-eb-garamond flex-wrap">
                 {
                     props.items.map((link: LinkType) => (
                         <li
