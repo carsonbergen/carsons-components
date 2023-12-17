@@ -15,12 +15,13 @@ export function LinkList(
 }) {
     return (
         <>
-            <ul className="flex flex-row self-start font-eb-garamond flex-wrap">
+            <ul className="flex flex-col px-4 self-start font-eb-garamond flex-wrap">
                 {
                     props.items.map((link: LinkType) => (
                         <li
                             id={link.name}
                             key={hash(link.link)}
+                            className=""
                         >
                             <Link
                                 href={link.link}

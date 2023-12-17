@@ -5,26 +5,32 @@ export function AnimatedLink(props: { children: any }) {
     const animationSettings = {
         from: {
             fontWeight: '400',
-            scale: 1.0,
+            transform: "scale(1.0)",
             y: 0,
+            marginLeft: 4,
+            marginRight: 4,
         },
         to: {
             fontWeight: '800',
-            scale: 1.05,
-            y: -2,
+            transform: "scale(1.05)",
+            y: -1,
+            marginLeft: 4,
+            marginRight: 4,
         }
     }
 
     const [springs, api] = useSpring(() => ({
         from: { 
             fontWeight: animationSettings.from.fontWeight,
-            scale: animationSettings.from.scale,
+            transform: animationSettings.from.transform,
             y: animationSettings.from.y,
+            marginLeft: animationSettings.from.marginLeft,
+            marginRight: animationSettings.from.marginRight,
         },
         config: {
-            mass: 2,
+            mass: 2000,
             friction: 500,
-            tension: 120,
+            tension: 20,
         }
     }));
 
@@ -32,13 +38,17 @@ export function AnimatedLink(props: { children: any }) {
         api.start({
             from: {
                 fontWeight: animationSettings.from.fontWeight,
-                scale: animationSettings.from.scale,
+                transform: animationSettings.from.transform,
                 y: animationSettings.from.y,
+                marginLeft: animationSettings.from.marginLeft,
+                marginRight: animationSettings.from.marginRight,
             },
             to: {
                 fontWeight: animationSettings.to.fontWeight,
-                scale: animationSettings.to.scale,
+                transform: animationSettings.to.transform,
                 y: animationSettings.to.y,
+                marginLeft: animationSettings.to.marginLeft,
+                marginRight: animationSettings.to.marginRight,
             },
         });
     }
@@ -47,13 +57,17 @@ export function AnimatedLink(props: { children: any }) {
         api.start({
             from: {
                 fontWeight: animationSettings.to.fontWeight,
-                scale: animationSettings.to.scale,
+                transform: animationSettings.to.transform,
                 y: animationSettings.to.y,
+                marginLeft: animationSettings.to.marginLeft,
+                marginRight: animationSettings.to.marginRight,
             },
             to: {
                 fontWeight: animationSettings.from.fontWeight,
-                scale: animationSettings.from.scale,
+                transform: animationSettings.from.transform,
                 y: animationSettings.from.y,
+                marginLeft: animationSettings.from.marginLeft,
+                marginRight: animationSettings.from.marginRight,
             },
         });
     }
@@ -65,7 +79,7 @@ export function AnimatedLink(props: { children: any }) {
                 verticalAlign: "middle",
                 ...springs
             }}
-            className={"text-primary mr-4 hover:underline"}
+            className={"text-primary mr-4 hover:underline flex-none flex-shrink"}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
