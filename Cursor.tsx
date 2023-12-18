@@ -6,7 +6,7 @@ function approx(value1: number, value2: number, threshold: number): boolean {
   return difference <= threshold;
 }
 
-export default function Cursor(props: { display: boolean, itemHovered: string | null }) {
+export default function Cursor(props: { display: boolean }) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
   const [mouseOffScreen, setMouseOffScreen] = useState<boolean>(false);
@@ -61,7 +61,7 @@ export default function Cursor(props: { display: boolean, itemHovered: string | 
   return (
     <>
       <div
-        className={`fixed z-[9999] ease-in-out transition-opacity duration-300 pointer-events-none mix-blend-exclusion`}
+        className={`fixed z-[100000] ease-in-out transition-opacity duration-300 pointer-events-none mix-blend-exclusion`}
         style={{
           left: `${position.x - 24}px`,
           top: `${position.y - 24}px`
