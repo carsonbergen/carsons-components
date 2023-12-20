@@ -14,7 +14,7 @@ export default function Page(props: { children: any }) {
 
     return (
         <>
-            <div className={`${mounted && !loading ? "opacity-100" : "opacity-0"} transition-opacity duration-200 w-full h-full`}>
+            <div className={`${mounted && !loading ? "opacity-100 animate-fade-up" : "opacity-0"} transition-opacity duration-200 w-full h-full`}>
                 {mounted && !loading ?
                     <>
                         {props.children}
