@@ -4,15 +4,16 @@ import { LinkType } from "./types";
 import { AnimatedLink } from "./Text";
 import { MouseEventHandler } from "react";
 import { hash } from "./hash";
+import { ArrowArcRight, ArrowBendDoubleUpRight, ArrowBendRightUp } from "phosphor-react";
 
 // List of links
 export function LinkList(
-    props: { 
-        items: LinkType[], 
-        openInNewTab?: boolean, 
+    props: {
+        items: LinkType[],
+        openInNewTab?: boolean,
         onMouseEnter: MouseEventHandler<HTMLAnchorElement>,
         onMouseLeave: MouseEventHandler<HTMLAnchorElement>,
-}) {
+    }) {
     return (
         <>
             <ul className="flex flex-col px-4 self-start font-eb-garamond flex-wrap">
@@ -33,7 +34,23 @@ export function LinkList(
                             >
                                 {/* {link.name} */}
                                 <AnimatedLink>
-                                    {link.name}
+                                    <div className="flex flex-row">
+                                        {link.name}
+                                        {link.opensAnotherSite ?
+                                            <>
+                                                <ArrowBendRightUp weight="bold" className="w-full h-full text-primary" />
+                                            </>
+                                            :
+                                            null
+                                        }
+                                        {link.openInNewTab ?
+                                            <>
+                                                <ArrowBendDoubleUpRight weight="bold" className="w-full h-full text-primary" />
+                                            </>
+                                            :
+                                            null
+                                        }
+                                    </div>
                                 </AnimatedLink>
                             </Link>
                         </li>
